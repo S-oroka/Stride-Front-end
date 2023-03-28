@@ -4,10 +4,11 @@ const Navbar = () => {
   return (
     <div>
       <>
-      hello
+        <h1 className='text-blue-500'>This is the navbar</h1>
       </>
     </div>
   )
 }
+
 
 export default Navbar
