@@ -31,13 +31,20 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <>
-        <Navbar user={user}/>
-      </>
-      <>
-        <HomePage />
-      </>
+    <div>
+      <Navbar
+        user={user}
+        handleLogout={handleLogout} />
+      <div className="App">
+        <main>
+          <Routes>
+              <Route path='/' element={<HomePage />} />
+              <Route path='/login' element={<HomePage />} />
+              <Route path='/register' element={<HomePage />} />
+              
+            </Routes>
+        </main>
+      </div>
     </div>
   );
 }
