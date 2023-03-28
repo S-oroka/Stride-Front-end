@@ -2,7 +2,7 @@ import React from 'react'
 import { RegisterUser } from '../services/Auth'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import LoginPhoto from '../assets/LoginPhoto.jpg';
+
 
 const Register = () => {
   let navigate = useNavigate()
@@ -34,13 +34,11 @@ const Register = () => {
     } else {
       return
     }
-    
-    
   }
 
   return (
     <div className='bg-login'>
-      <div className="h-screen bg-cover flex items-center justify-center" style={{ backgroundImage: `url(${LoginPhoto})` }}>
+      <div className="h-screen bg-cover flex items-center justify-center">
         <div className='flex flex-col max-w-md justify-center mx-auto w-full bg-slate-800 bg-opacity-80'>
           <h1 className='text-white text-3xl mt-20'>Sign Up</h1>
           <form className='flex flex-col mx-auto' onSubmit={handleSubmit}>

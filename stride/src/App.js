@@ -1,9 +1,11 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
+import Register from './components/Register';
 import { useEffect, useState } from 'react';
 import { CheckSession } from './services/Auth';
 import { Route, Routes, useNavigate } from 'react-router-dom'
+import Login from './components/Login';
 
 
 function App() {
@@ -39,9 +41,9 @@ function App() {
         <main>
           <Routes>
               <Route path='/' element={<HomePage />} />
-              <Route path='/login' element={<HomePage />} />
-              <Route path='/register' element={<HomePage />} />
-              
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+
             </Routes>
         </main>
       </div>
