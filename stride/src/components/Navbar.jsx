@@ -1,7 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useState } from 'react'
 
 const Navbar = ({ user, handleLogout }) => {
+  const [nav, setNav] = useState(false)
   let signedIn
   if (user) {
     signedIn =

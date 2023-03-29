@@ -2,8 +2,13 @@ import React from 'react'
 
 const HomePage = () => {
   return (
-    <div>
-        <h1 className='text-red-500'>This is the home page</h1>
+    <div className='mt-10 max-w-screen flex justify-center'>
+        <div>
+          <h1>Your Runs</h1>
+        </div>
+        <div>
+          
+        </div>
     </div>
   )
 }
