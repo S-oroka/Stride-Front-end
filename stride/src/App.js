@@ -14,16 +14,18 @@ function App() {
 
   let navigate = useNavigate();
 
-  const checkToken = async () => {
-    const user = await CheckSession()
-    setUser(user)
-  }
-
   const handleLogout = () => {
     setUser(null)
     localStorage.clear()
     navigate('/')
   }
+
+  const checkToken = async () => {
+    const user = await CheckSession()
+    setUser(user)
+  }
+
+
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -40,10 +42,10 @@ function App() {
       <div className="App">
         <main>
           <Routes>
-              <Route path='/' element={<HomePage />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<Register />} />
-            </Routes>
+            <Route path='/' element={<HomePage user={user} />} />
+            <Route path='/login' element={<Login setUser={setUser} />} />
+            <Route path='/register' element={<Register />} />
+          </Routes>
         </main>
       </div>
     </div>
