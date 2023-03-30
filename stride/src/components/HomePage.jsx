@@ -42,38 +42,75 @@ useEffect(() => {
   }, [])
 
   useEffect(() => {
-    if (user && id) { // added id check
+    if (user && id) {
       getUserRuns()
     }
-  }, [user, id]) // added id dependency
+  }, [user, id])
 
   return (
-    <div className='mt-10 max-w-screen-md mx-auto flex flex-col justify-center items-center'>
-      <h1 className='text-3xl mb-4'>Your Runs</h1>
-      {!showForm && <FaPlusCircle onClick={() => setShowForm(true)} size={30} className='text-4xl text-red-400 hover:cursor-pointer' />}
+    <div className="flex flex-col justify-center items-center bg-gray-100 py-10">
+      <h1 className="text-3xl mb-4">Your Runs</h1>
+      {!showForm && (
+        <button
+          onClick={() => setShowForm(true)}
+          className="bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center fixed bottom-10 right-10 shadow-lg"
+        >
+          <FaPlusCircle size={30} />
+        </button>
+      )}
       {showForm && (
-        <div className='mb-4'>
-          <input type='number' placeholder='Miles' value={distance} onChange={(e) => setDistance(e.target.value)} />
-          <input type='text' placeholder='hr:mn:sec' value={time} onChange={(e) => setTime(e.target.value)} />
-          <button onClick={createRun}>Submit</button>
-          <button onClick={() => setShowForm(false)}>Cancel</button>
+        <div className="mb-4 w-full">
+          <input
+            type="number"
+            placeholder="Miles"
+            value={distance}
+            onChange={(e) => setDistance(e.target.value)}
+            className="block w-full rounded-md bg-gray-200 py-2 px-4 mb-2"
+          />
+          <input
+            type="text"
+            placeholder="--:--:--"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            className="block w-full rounded-md bg-gray-200 py-2 px-4 mb-2"
+          />
+          <div className="flex justify-end">
+            <button
+              onClick={createRun}
+              className="bg-blue-500 text-white rounded-full py-2 px-4 mr-2"
+            >
+              Submit
+            </button>
+            <button
+              onClick={() => setShowForm(false)}
+              className="bg-gray-500 text-white rounded-full py-2 px-4"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       )}
       {user && runs && runs.length > 0 ? (
-        <ul className='w-full'>
-          {runs.map(run => (
-            <li key={run.id} className="my-5 border-b pb-3">
-              <h1 className='text-xl'>Distance: {run.distance} mi.</h1>
-              <h2 className='text-md'>Time: {run.time}</h2>
-              <button className='text-sm text-blue-400' onClick={() => deleteRun(run.id)}>X</button>
+        <ul className="w-full">
+          {runs.map((run) => (
+            <li key={run.id} className="my-5 border-b pb-3 w-full">
+              <h1 className="text-xl mb-2">Distance: {run.distance} mi.</h1>
+              <h2 className="text-md">Time: {run.time}</h2>
+              <button
+                className="text-sm text-blue-400"
+                onClick={() => deleteRun(run.id)}
+              >
+                X
+              </button>
             </li>
           ))}
         </ul>
       ) : (
-        <p className='text-lg text-center'>Please Sign In</p>
+        <p className="text-lg text-center">Please Sign In</p>
       )}
     </div>
-  )
+  );
+  
 }
 
 export default HomePage
