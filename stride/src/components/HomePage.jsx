@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { FaPlusCircle } from 'react-icons/fa';
 import axios from 'axios'
 
@@ -15,7 +15,6 @@ const HomePage = ({ user }) => {
   const getUserRuns = async () => {
     try {
       const userRuns = await axios.get(`http://localhost:3001/api/runs/${id}`)
-      console.log(userRuns)
       setRuns(userRuns.data)
     } catch (error) {
       console.error(error)
@@ -26,7 +25,7 @@ const HomePage = ({ user }) => {
     await axios.delete(`http://localhost:3001/api/runs/${id}`)
     getUserRuns()
   }
-  
+
 
   const createRun = async () => {
     const newRun = { distance, time }
@@ -37,7 +36,7 @@ const HomePage = ({ user }) => {
     getUserRuns()
   }
 
-useEffect(() => {
+  useEffect(() => {
     getUserRuns()
   }, [])
 
@@ -50,7 +49,7 @@ useEffect(() => {
   return (
     <div className="flex flex-col justify-center items-center bg-gray-100 py-10">
       <h1 className="text-3xl mb-4">Your Runs</h1>
-      {!showForm && (
+      {!showForm && user && (
         <button
           onClick={() => setShowForm(true)}
           className="bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center fixed bottom-10 right-10 shadow-lg"
@@ -77,14 +76,12 @@ useEffect(() => {
           <div className="flex justify-end">
             <button
               onClick={createRun}
-              className="bg-blue-500 text-white rounded-full py-2 px-4 mr-2"
-            >
+              className="bg-blue-500 text-white rounded-full py-2 px-4 mr-2">
               Submit
             </button>
             <button
               onClick={() => setShowForm(false)}
-              className="bg-gray-500 text-white rounded-full py-2 px-4"
-            >
+              className="bg-gray-500 text-white rounded-full py-2 px-4">
               Cancel
             </button>
           </div>
@@ -93,16 +90,16 @@ useEffect(() => {
       {user && runs && runs.length > 0 ? (
         <ul className="w-full">
           {runs.map((run) => (
-            <li key={run.id} className="my-5 border-b pb-3 w-full">
+            <NavLink to={`/runs/${id}`} key={run.id} className="my-5 border-b pb-3 w-full">
               <h1 className="text-xl mb-2">Distance: {run.distance} mi.</h1>
               <h2 className="text-md">Time: {run.time}</h2>
               <button
-                className="text-sm text-blue-400"
+                className="text-sm text-blue-400 mt-10"
                 onClick={() => deleteRun(run.id)}
               >
                 X
               </button>
-            </li>
+            </NavLink>
           ))}
         </ul>
       ) : (
@@ -110,7 +107,7 @@ useEffect(() => {
       )}
     </div>
   );
-  
+
 }
 
 export default HomePage

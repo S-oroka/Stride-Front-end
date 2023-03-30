@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
 import Register from './components/Register';
+import RunDetails from './components/RunDetails';
 import { useEffect, useState } from 'react';
 import { CheckSession } from './services/Auth';
 import { Route, Routes, useNavigate } from 'react-router-dom'
@@ -45,6 +46,7 @@ function App() {
             <Route path='/' element={<HomePage user={user} />} />
             <Route path='/login' element={<Login setUser={setUser} />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/runs/:id' element={<RunDetails />} />
           </Routes>
         </main>
       </div>
