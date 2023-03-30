@@ -90,7 +90,7 @@ const HomePage = ({ user }) => {
       {user && runs && runs.length > 0 ? (
         <ul className="w-full">
           {runs.map((run) => (
-            <NavLink to={`/runs/${id}`} key={run.id} className="my-5 border-b pb-3 w-full">
+            <NavLink to={`/runs/${run.id}`} key={run.id} className="my-5 border-b pb-3 w-full">
               <h1 className="text-xl mb-2">Distance: {run.distance} mi.</h1>
               <h2 className="text-md">Time: {run.time}</h2>
               <button
