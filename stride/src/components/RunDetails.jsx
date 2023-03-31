@@ -43,8 +43,10 @@ const RunDetails = () => {
     const getLocations = async () => {
         const response = await axios.get(`http://localhost:3001/api/locations/${id}`);
         console.log(response.data);
-        setLocations(response.data.map(location => location.terrain_type));
+        setLocations(response.data.filter(location => location.run_id === parseInt(id)).map(location => location.terrain_type));
     };
+    
+      
     
     useEffect(() => {
         getRun();
@@ -52,25 +54,38 @@ const RunDetails = () => {
     }, []);
 
     return (
-        <div className='mt-20'>
-            <h1>Distance: {run.distance} mi.</h1>
-            <h2>Time: {run.time}</h2>
-            <div>
-                <input type='text' value={place} onChange={(e) => setPlace(e.target.value)} />
-                <button className='mt-20' onClick={handleAddLocation}>Add Location?</button>
+        <div className="flex flex-col items-center justify-center mt-20">
+          <h1 className="text-4xl font-bold mb-4">Distance: {run.distance} mi.</h1>
+          <h2 className="text-xl font-semibold mb-8">Time: {run.time}</h2>
+          <div className="flex flex-col items-center justify-center w-full mb-8">
+            <input
+              type="text"
+              value={place}
+              onChange={(e) => setPlace(e.target.value)}
+              placeholder="Enter a location"
+              className="border border-gray-400 rounded-lg py-2 px-4 mb-4 w-full lg:w-1/2"
+            />
+            <button
+              onClick={handleAddLocation}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
+            >
+              Add Location
+            </button>
+          </div>
+          {locations.length > 0 && (
+            <div className="w-full lg:w-1/2">
+              <h3 className="text-lg font-medium mb-2">Locations:</h3>
+              <ul className="list-disc list-inside">
+                {locations.map((location, index) => (
+                  <li key={index} className="text-gray-700 mb-2">
+                    {location}
+                  </li>
+                ))}
+              </ul>
             </div>
-            {locations.length > 0 && (
-                <div>
-                    <h3>Locations:</h3>
-                    <ul>
-                        {locations.map((location, index) => (
-                            <li key={index}>{location}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+          )}
         </div>
-    );
+      );
 };
 
 
