@@ -40,10 +40,14 @@ const Navbar = ({ user, handleLogout }) => {
               </li>
               <li
                 className="px4 cursor-pointer capitalize py-6 text-4xl"
-                onClick={handleLogout}
+                onClick={() => {
+                  handleLogout();
+                  setNav(false);
+                }}
               >
                 Sign Out
               </li>
+
             </ul>
           )}
         </>
@@ -53,7 +57,7 @@ const Navbar = ({ user, handleLogout }) => {
             <li className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150">
               About
             </li>
-            <NavLink to='/login' className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150">Sign In</NavLink>
+            <NavLink onClick={() => setNav(false)} to='/login' className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150" >Sign In</NavLink>
           </ul>
 
           <div
@@ -64,14 +68,14 @@ const Navbar = ({ user, handleLogout }) => {
           </div>
 
           {nav && (
-            <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-600 text-gray-500">
+            <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-white to-white text-black-500">
               <li
                 className="px4 cursor-pointer capitalize py-6 text-4xl"
                 onClick={() => setNav(false)}
               >
                 About
               </li>
-              <NavLink to='/login' className="px4 cursor-pointer capitalize py-6 text-4xl">Sign In</NavLink>
+              <NavLink onClick={() => setNav(false)} to='/login' className="px4 cursor-pointer capitalize py-6 text-4xl">Sign In</NavLink>
             </ul>
           )}
         </>

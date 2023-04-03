@@ -80,10 +80,10 @@ const RunDetails = () => {
             distance: editData.distance,
             time: editData.time,
         }));
-        
+
     };
-    
-    
+
+
 
     const handleEditInputChange = (e) => {
         const { id, value } = e.target;
@@ -104,6 +104,27 @@ const RunDetails = () => {
         <div className="flex flex-col items-center justify-center mt-20">
             <h1 className="text-4xl font-bold mb-4">Distance: {run.distance} mi.</h1>
             <h2 className="text-xl font-semibold mb-8">Time: {run.time}</h2>
+            <form onSubmit={handleRunEdit} className='flex flex-col items-center my-5'>
+                <input
+                    className='border-2 rounded-md resize-none w-60'
+                    type="text"
+                    id="distance"
+                    placeholder="Distance"
+                    value={editData.distance}
+                    onChange={handleEditInputChange}
+                    maxLength={255}
+                />
+                <input
+                    className='border-2 rounded-md resize-none w-60'
+                    type="text"
+                    id="time"
+                    placeholder="Time"
+                    value={editData.time}
+                    onChange={handleEditInputChange}
+                    maxLength={255}
+                />
+                <button type="submit" className="inline-block border-2 rounded-lg bg-white hover:bg-slate-700 hover:text-white text-gray-500 font-semibold py-2 px-4 my-2 transition-all duration-200 ease-in-out transform  hover:scale-110">Edit</button>
+            </form>
             <div className="flex flex-col items-center justify-center w-full mb-8">
                 <input
                     type="text"
@@ -118,27 +139,7 @@ const RunDetails = () => {
                 >
                     Add Location
                 </button>
-                <form onSubmit={handleRunEdit} className='flex flex-col items-center my-5'>
-                    <input
-                        className='border-2 rounded-md resize-none w-60'
-                        type="text"
-                        id="distance"
-                        placeholder="Distance"
-                        value={editData.distance}
-                        onChange={handleEditInputChange}
-                        maxLength={255}
-                    />
-                    <input
-                        className='border-2 rounded-md resize-none w-60'
-                        type="text"
-                        id="time"
-                        placeholder="Time"
-                        value={editData.time}
-                        onChange={handleEditInputChange}
-                        maxLength={255}
-                    />
-                    <button type="submit" className="inline-block border-2 rounded-lg bg-white hover:bg-slate-700 hover:text-white text-gray-500 font-semibold py-2 px-4 my-2 transition-all duration-200 ease-in-out transform  hover:scale-110">Edit</button>
-                </form>
+
 
             </div>
             {locations.length > 0 && (
