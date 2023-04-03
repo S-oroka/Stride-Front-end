@@ -14,6 +14,8 @@ const RunDetails = () => {
         distance: '',
         time: ''
     });
+    const [showEditForm, setShowEditForm] = useState(false);
+    const [showLocationForm, setShowLocationForm] = useState(false);
 
     const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -80,7 +82,7 @@ const RunDetails = () => {
             distance: editData.distance,
             time: editData.time,
         }));
-
+        setShowEditForm(false);
     };
 
 
@@ -104,56 +106,79 @@ const RunDetails = () => {
         <div className="flex flex-col items-center justify-center mt-20">
             <h1 className="text-4xl font-bold mb-4">Distance: {run.distance} mi.</h1>
             <h2 className="text-xl font-semibold mb-8">Time: {run.time}</h2>
-            <form onSubmit={handleRunEdit} className='flex flex-col items-center my-5'>
-                <input
-                    className='border-2 rounded-md resize-none w-60'
-                    type="text"
-                    id="distance"
-                    placeholder="Distance"
-                    value={editData.distance}
-                    onChange={handleEditInputChange}
-                    maxLength={255}
-                />
-                <input
-                    className='border-2 rounded-md resize-none w-60'
-                    type="text"
-                    id="time"
-                    placeholder="Time"
-                    value={editData.time}
-                    onChange={handleEditInputChange}
-                    maxLength={255}
-                />
-                <button type="submit" className="inline-block border-2 rounded-lg bg-white hover:bg-slate-700 hover:text-white text-gray-500 font-semibold py-2 px-4 my-2 transition-all duration-200 ease-in-out transform  hover:scale-110">Edit</button>
-            </form>
+            {showEditForm && (
+                <form onSubmit={handleRunEdit} className="flex flex-col items-center my-5">
+                    <input
+                        className="border-2 rounded-md resize-none w-60"
+                        type="text"
+                        id="distance"
+                        placeholder="Distance"
+                        value={editData.distance}
+                        onChange={handleEditInputChange}
+                        maxLength={255}
+                    />
+                    <input
+                        className="border-2 rounded-md resize-none w-60"
+                        type="text"
+                        id="time"
+                        placeholder="Time"
+                        value={editData.time}
+                        onChange={handleEditInputChange}
+                        maxLength={255}
+                    />
+                    <button
+                        type="submit"
+                        className="inline-block border-2 rounded-lg bg-white hover:bg-slate-700 hover:text-white text-gray-500 font-semibold py-2 px-4 my-2 transition-all duration-200 ease-in-out transform  hover:scale-110"
+                    >
+                        Edit
+                    </button>
+                </form>
+            )}
             <div className="flex flex-col items-center justify-center w-full mb-8">
-                <input
-                    type="text"
-                    value={place}
-                    onChange={(e) => setPlace(e.target.value)}
-                    placeholder="Enter a location"
-                    className="border border-gray-400 rounded-lg py-2 px-4 mb-4 w-full lg:w-1/2"
-                />
-                <button
-                    onClick={handleAddLocation}
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
+                {showLocationForm && (
+                    <div>
+                        <input
+                            type="text"
+                            value={place}
+                            onChange={(e) => setPlace(e.target.value)}
+                            placeholder="Enter a location"
+                            className="border border-gray-400 rounded-lg py-2 px-4 mb-4 w-full lg:w-1/2"
+                        />
+                        <button
+                            onClick={handleAddLocation}
+                            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
+                        >
+                            Add Location
+                        </button>
+                    </div>
+                )}
+                <div>
+                    <button
+                    onClick={() => setShowEditForm(!showEditForm)}
+                    className="bg-blue-500 mx-5 text-white font-semibold py-2 mb-10 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 transition duration-300 ease-in-out mt-8"
                 >
-                    Add Location
+                    {showEditForm ? 'Cancel' : 'Edit Run'}
                 </button>
-
+                    <button
+                        onClick={() => setShowLocationForm(!showLocationForm)}
+                        className="bg-gray-500 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 transition duration-300 ease-in-out"
+                    >
+                        {showLocationForm ? 'Cancel' : 'Add Location'}
+                    </button>
+                    </div>
 
             </div>
             {locations.length > 0 && (
                 <div className="w-full lg:w-1/2">
-                    <h3 className="text-lg font-medium mb-2">Locations:</h3>
-                    <ul className="list-disc list-inside">
+                    <ul className="list-disc pl-4">
                         {locations.map((location, index) => (
-                            <li key={index} className="text-gray-700 mb-2">
-                                {location}
+                            <li key={location}>
+                                {location}{' '}
                                 <button
                                     onClick={() => deleteLocation(index)}
-                                    className="ml-10"
+                                    className="text-red-500 hover:text-red-700 font-semibold"
                                 >
-                                    X
+                                    (delete)
                                 </button>
                             </li>
                         ))}

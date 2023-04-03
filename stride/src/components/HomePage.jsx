@@ -21,10 +21,12 @@ const HomePage = ({ user }) => {
     }
   }
 
-  const deleteRun = async (id) => {
+  const deleteRun = async (id, event) => {
+    event.preventDefault()
     await axios.delete(`http://localhost:3001/api/runs/${id}`)
     getUserRuns()
-  }
+  };
+
 
 
   const createRun = async () => {
@@ -58,22 +60,22 @@ const HomePage = ({ user }) => {
         </button>
       )}
       {showForm && (
-        <div className="mb-4 w-full">
+        <div className="mb-4 max-w-md flex flex-col justify-center">
           <input
             type="number"
             placeholder="Miles"
             value={distance}
             onChange={(e) => setDistance(e.target.value)}
-            className="block w-full rounded-md bg-gray-200 py-2 px-4 mb-2"
+            className="block justify-center rounded-md bg-gray-200 py-2 px-4 mb-2"
           />
           <input
             type="text"
             placeholder="--:--:--"
             value={time}
             onChange={(e) => setTime(e.target.value)}
-            className="block w-full rounded-md bg-gray-200 py-2 px-4 mb-2"
+            className="block rounded-md bg-gray-200 py-2 px-4 mb-2"
           />
-          <div className="flex justify-end">
+          <div className="flex justify-center mb-10">
             <button
               onClick={createRun}
               className="bg-blue-500 text-white rounded-full py-2 px-4 mr-2">
@@ -87,23 +89,25 @@ const HomePage = ({ user }) => {
           </div>
         </div>
       )}
+
       {user && runs && runs.length > 0 ? (
-        <ul className="w-full">
+        <ul className=" mt-10">
           {runs.map((run) => (
-            <NavLink to={`/runs/${run.id}`} key={run.id} className="my-5 border-b pb-3 w-full">
+            <NavLink to={`/runs/${run.id}`} key={run.id} className="my-10 border-b pb-3 w-full">
               <h1 className="text-xl mb-2">Distance: {run.distance} mi.</h1>
               <h2 className="text-md">Time: {run.time}</h2>
               <button
                 className="text-sm text-blue-400 mt-10"
-                onClick={() => deleteRun(run.id)}
+                onClick={(e) => deleteRun(run.id, e)}
               >
                 X
               </button>
+
             </NavLink>
           ))}
         </ul>
       ) : (
-        <p className="text-lg text-center">Please Sign In</p>
+        <p className=" flex align-center h-screen justify-center text-lg text-center">Stride is a running app designed to help keep you motivated on your running career. Track your runs and watch your progess to be the best runner you can be.</p>
       )}
     </div>
   );
