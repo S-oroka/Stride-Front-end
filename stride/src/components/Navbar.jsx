@@ -12,9 +12,9 @@ const Navbar = ({ user, handleLogout }) => {
       {user ? (
         <>
           <ul className="hidden md:flex items-center">
-            <li className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150">
-              About
-            </li>
+          <NavLink onClick={() => setNav(false)} to='/pace' className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150">
+              Pace Calculator
+            </NavLink>
             <li
               className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150"
               onClick={handleLogout}
@@ -32,12 +32,7 @@ const Navbar = ({ user, handleLogout }) => {
 
           {nav && (
             <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-white to-white text-black-500">
-              <li
-                className="px4 cursor-pointer capitalize py-6 text-4xl"
-                onClick={() => setNav(false)}
-              >
-                About
-              </li>
+              <NavLink onClick={() => setNav(false)} to='/pace' className="px4 cursor-pointer capitalize py-6 text-4xl">Pace Calculator</NavLink>
               <li
                 className="px4 cursor-pointer capitalize py-6 text-4xl"
                 onClick={() => {
@@ -54,12 +49,11 @@ const Navbar = ({ user, handleLogout }) => {
       ) : (
         <>
           <ul className="hidden md:flex items-center">
-            <li className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150">
-              About
-            </li>
+            <NavLink onClick={() => setNav(false)} to='/pace' className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150">
+              Pace Calculator
+            </NavLink>
             <NavLink onClick={() => setNav(false)} to='/login' className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150" >Sign In</NavLink>
           </ul>
-
           <div
             onClick={() => setNav(!nav)}
             className="cursor-pointer pr-4 z-10 text-black md:hidden"
@@ -69,12 +63,7 @@ const Navbar = ({ user, handleLogout }) => {
 
           {nav && (
             <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-white to-white text-black-500">
-              <li
-                className="px4 cursor-pointer capitalize py-6 text-4xl"
-                onClick={() => setNav(false)}
-              >
-                About
-              </li>
+              <NavLink onClick={() => setNav(false)} to='/pace' className="px4 cursor-pointer capitalize py-6 text-4xl">Pace Calculator</NavLink>
               <NavLink onClick={() => setNav(false)} to='/login' className="px4 cursor-pointer capitalize py-6 text-4xl">Sign In</NavLink>
             </ul>
           )}

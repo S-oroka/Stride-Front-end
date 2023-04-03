@@ -24,7 +24,7 @@ const Login = ({ setUser, user }) => {
   }
 
   return (
-    <div className="h-screen bg-cover flex items-center justify-center">
+    <div className=" bg-cover flex items-center justify-center">
       <div className='flex flex-col max-w-md justify-center mx-auto w-full bg-white bg-opacity-80'>
         <h1 className='text-black text-3xl my-20'>Login</h1>
         <form onSubmit={handleSubmit} className='flex flex-col mx-auto'>

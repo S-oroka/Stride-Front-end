@@ -27,8 +27,6 @@ const HomePage = ({ user }) => {
     getUserRuns()
   };
 
-
-
   const createRun = async () => {
     const newRun = { distance, time }
     const run = await axios.post(`http://localhost:3001/api/runs/${id}`, newRun)
@@ -107,7 +105,7 @@ const HomePage = ({ user }) => {
           ))}
         </ul>
       ) : (
-        <p className=" flex align-center h-screen justify-center text-lg text-center">Stride is a running app designed to help keep you motivated on your running career. Track your runs and watch your progess to be the best runner you can be.</p>
+        <p className=" flex align-center h-screen justify-center max-w-md text-lg text-center">Stride is a running app designed to help keep you motivated on your running career. Track your runs and watch your progess to be the best runner you can be.</p>
       )}
     </div>
   );

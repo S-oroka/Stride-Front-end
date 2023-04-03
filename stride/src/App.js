@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { CheckSession } from './services/Auth';
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import Login from './components/Login';
+import PaceCalculator from './components/PaceCalculator';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
             <Route path='/login' element={<Login setUser={setUser} />} />
             <Route path='/register' element={<Register />} />
             <Route path='/runs/:id' element={<RunDetails />} />
+            <Route path='/pace' element={<PaceCalculator />} />
           </Routes>
         </main>
       </div>
