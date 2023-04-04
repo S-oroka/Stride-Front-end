@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import Client from '../services/api';
 
 const RunDetails = () => {
     const { id } = useParams();
@@ -24,7 +25,7 @@ const RunDetails = () => {
         if (cachedRun) {
             setRun(JSON.parse(cachedRun));
         } else {
-            const response = await axios.get(`http://localhost:3001/api/runs/run/${id}`);
+            const response = await Client.get(`/runs/run/${id}`);
             console.log(response.data);
             setRun(response.data);
             localStorage.setItem(`run-${id}`, JSON.stringify(response.data));
@@ -37,7 +38,7 @@ const RunDetails = () => {
         const { lat, lng } = response.data.results[0].geometry.location;
         setLocation({ lat, lng });
         const formattedAddress = response.data.results[0].formatted_address;
-        const res = await axios.post(`http://localhost:3001/api/locations/${id}`, {
+        const res = await Client.post(`/locations/${id}`, {
             latitude: lat,
             longitude: lng,
             terrain_type: formattedAddress,
@@ -49,7 +50,7 @@ const RunDetails = () => {
     };
 
     const getLocations = async () => {
-        const response = await axios.get(`http://localhost:3001/api/locations/${id}`);
+        const response = await Client.get(`/locations/${id}`);
         const filteredLocations = response.data.filter(location => location.run_id === parseInt(id));
         setLocations(filteredLocations.map(location => location.terrain_type));
         setLocationIds(filteredLocations.map(location => location.id));
@@ -58,13 +59,13 @@ const RunDetails = () => {
 
     const deleteLocation = async (index) => {
         const locationId = locationIds[index];
-        await axios.delete(`http://localhost:3001/api/locations/${locationId}`);
+        await Client.delete(`/locations/${locationId}`);
         getLocations();
     };
 
     const handleRunEdit = async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:3001/api/runs/${id}`, {
+        await Client.put(`/runs/${id}`, {
             distance: editData.distance,
             time: editData.time
         });

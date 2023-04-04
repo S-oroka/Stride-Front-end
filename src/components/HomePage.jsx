@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import { FaPlusCircle } from 'react-icons/fa';
-import axios from 'axios'
+import Client from '../services/api';
 
 const HomePage = ({ user }) => {
   const { id } = user ? user : {};
@@ -14,7 +14,7 @@ const HomePage = ({ user }) => {
 
   const getUserRuns = async () => {
     try {
-      const userRuns = await axios.get(`http://localhost:3001/api/runs/${id}`)
+      const userRuns = await Client.get(`/runs/${id}`)
       setRuns(userRuns.data)
     } catch (error) {
       console.error(error)
@@ -23,13 +23,13 @@ const HomePage = ({ user }) => {
 
   const deleteRun = async (id, event) => {
     event.preventDefault()
-    await axios.delete(`http://localhost:3001/api/runs/${id}`)
+    await Client.delete(`/runs/${id}`)
     getUserRuns()
   };
 
   const createRun = async () => {
     const newRun = { distance, time }
-    const run = await axios.post(`http://localhost:3001/api/runs/${id}`, newRun)
+    const run = await Client.post(`/runs/${id}`, newRun)
     setShowForm(false)
     setDistance('')
     setTime('')
