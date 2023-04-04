@@ -35,7 +35,7 @@ const RunDetails = () => {
 
 
     const handleAddLocation = async () => {
-        const response = await api.get(`/api/geocode/json?address=${place}&key=${apiKey}`);
+        const response = await api.get(`/api/geocode/json?address=${place}&key=AIzaSyCOXFtbvRuV6GQnTAv0Yex9X8pMzGbhUlI`);
         const { lat, lng } = response.data.results[0].geometry.location;
         setLocation({ lat, lng });
         const formattedAddress = response.data.results[0].formatted_address;
