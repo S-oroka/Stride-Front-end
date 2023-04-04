@@ -18,7 +18,7 @@ const RunDetails = () => {
     const [showEditForm, setShowEditForm] = useState(false);
     const [showLocationForm, setShowLocationForm] = useState(false);
 
-    const apiKey = process.env.REACT_APP_API_KEY;
+    const apiKey = process.env.REACT_APP_API_KEY
 
     const getRun = async () => {
         const cachedRun = localStorage.getItem(`run-${id}`);
