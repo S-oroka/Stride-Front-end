@@ -29,7 +29,7 @@ const Login = ({ setUser, user }) => {
         <h1 className='text-black text-3xl my-20'>Login</h1>
         <form onSubmit={handleSubmit} className='flex flex-col mx-auto'>
           <input type='email' placeholder='Email' onChange={handleChange} name='email' value={formValues.email} className='my-4 bg-transparent border-b-2 text-black outline-none' required />
-          <input type='password' placeholder='Password' onChange={handleChange} name='password' value={formValues.password} className='my-4 bg-transparent border-b-2 text-white outline-none' required />
+          <input type='password' placeholder='Password' onChange={handleChange} name='password' value={formValues.password} className='my-4 bg-transparent border-b-2 text-black outline-none' required />
           <div className='flex flex-col text-black my-20'>
             <button className="mb-5 text-black bg-white hover:bg-gray-200 focus:outline-none transition duration-300 ease-in-out">Login</button>
             <Link to='/register'>
