@@ -1,6 +1,7 @@
 import Axios from 'axios'
 
 export const BASE_URL = 'https://stride-app.herokuapp.com/'
+export const API_URL = 'https://maps.googleapis.com/maps/'
 
 const Client = Axios.create({ baseURL: BASE_URL })
 Client.interceptors.request.use((config) => {
@@ -13,7 +14,7 @@ Client.interceptors.request.use((config) => {
     (error) => Promise.reject(error)
 )
 
-const api = Axios.create({ baseURL: 'https://maps.googleapis.com/maps/' })
+const api = Axios.create({ baseURL: API_URL })
 api.interceptors.request.use((config) => {
     return config
 },
