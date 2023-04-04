@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import Client, { API_URL } from '../services/api';
+import Client, { api } from '../services/api';
 
 
 const RunDetails = () => {
@@ -34,7 +34,7 @@ const RunDetails = () => {
 
 
     const handleAddLocation = async () => {
-        const response = await api.get(`/geocode/json?address=${place}&key=AIzaSyCOXFtbvRuV6GQnTAv0Yex9X8pMzGbhUlI`);
+        const response = await api.get(`/api/geocode/json?address=${place}&key=AIzaSyCOXFtbvRuV6GQnTAv0Yex9X8pMzGbhUlI`);
         const { lat, lng } = response.data.results[0].geometry.location;
         setLocation({ lat, lng });
         const formattedAddress = response.data.results[0].formatted_address;
@@ -48,7 +48,6 @@ const RunDetails = () => {
         setLocations([...locations, formattedAddress]);
         setLocationIds([...locationIds, newLocationId]);
     };
-    
 
     const getLocations = async () => {
         const response = await Client.get(`/api/locations/${id}`);
