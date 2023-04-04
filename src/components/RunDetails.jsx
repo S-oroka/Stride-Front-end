@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import Client from '../services/api';
+import api from '../services/api';
 
 const RunDetails = () => {
     const { id } = useParams();
@@ -34,7 +35,7 @@ const RunDetails = () => {
 
 
     const handleAddLocation = async () => {
-        const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${place}&key=${apiKey}`);
+        const response = await api.get(`/api/geocode/json?address=${place}&key=${apiKey}`);
         const { lat, lng } = response.data.results[0].geometry.location;
         setLocation({ lat, lng });
         const formattedAddress = response.data.results[0].formatted_address;
