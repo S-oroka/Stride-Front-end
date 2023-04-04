@@ -1,6 +1,8 @@
 ## Description 
 - Stride is a running app designed to help keep you motivated on your running career. Track your runs and watch your progess to be the best runner you can be!
 
+### Visit [Stride](https://stride-front-end.vercel.app/)
+
 ## Technologies Used
 * JavaScript
     * React
