@@ -18,7 +18,7 @@ const RunDetails = () => {
     const [showEditForm, setShowEditForm] = useState(false);
     const [showLocationForm, setShowLocationForm] = useState(false);
 
-    const API_KEY = AIzaSyCOXFtbvRuV6GQnTAv0Yex9X8pMzGbhUlI
+    const API_KEY = 'AIzaSyCOXFtbvRuV6GQnTAv0Yex9X8pMzGbhUlI'
 
     const getRun = async () => {
         const cachedRun = localStorage.getItem(`run-${id}`);
