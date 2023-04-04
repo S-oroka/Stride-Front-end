@@ -25,7 +25,7 @@ const RunDetails = () => {
         if (cachedRun) {
             setRun(JSON.parse(cachedRun));
         } else {
-            const response = await Client.get(`/runs/run/${id}`);
+            const response = await Client.get(`/api/runs/run/${id}`);
             console.log(response.data);
             setRun(response.data);
             localStorage.setItem(`run-${id}`, JSON.stringify(response.data));
@@ -38,7 +38,7 @@ const RunDetails = () => {
         const { lat, lng } = response.data.results[0].geometry.location;
         setLocation({ lat, lng });
         const formattedAddress = response.data.results[0].formatted_address;
-        const res = await Client.post(`/locations/${id}`, {
+        const res = await Client.post(`/api/locations/${id}`, {
             latitude: lat,
             longitude: lng,
             terrain_type: formattedAddress,
@@ -50,7 +50,7 @@ const RunDetails = () => {
     };
 
     const getLocations = async () => {
-        const response = await Client.get(`/locations/${id}`);
+        const response = await Client.get(`/api/locations/${id}`);
         const filteredLocations = response.data.filter(location => location.run_id === parseInt(id));
         setLocations(filteredLocations.map(location => location.terrain_type));
         setLocationIds(filteredLocations.map(location => location.id));
@@ -59,13 +59,13 @@ const RunDetails = () => {
 
     const deleteLocation = async (index) => {
         const locationId = locationIds[index];
-        await Client.delete(`/locations/${locationId}`);
+        await Client.delete(`/api/locations/${locationId}`);
         getLocations();
     };
 
     const handleRunEdit = async (e) => {
         e.preventDefault();
-        await Client.put(`/runs/${id}`, {
+        await Client.put(`/api/runs/${id}`, {
             distance: editData.distance,
             time: editData.time
         });

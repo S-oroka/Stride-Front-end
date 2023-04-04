@@ -14,7 +14,7 @@ const HomePage = ({ user }) => {
 
   const getUserRuns = async () => {
     try {
-      const userRuns = await Client.get(`/runs/${id}`)
+      const userRuns = await Client.get(`/api/runs/${id}`)
       setRuns(userRuns.data)
     } catch (error) {
       console.error(error)
@@ -23,13 +23,13 @@ const HomePage = ({ user }) => {
 
   const deleteRun = async (id, event) => {
     event.preventDefault()
-    await Client.delete(`/runs/${id}`)
+    await Client.delete(`/api/runs/${id}`)
     getUserRuns()
   };
 
   const createRun = async () => {
     const newRun = { distance, time }
-    const run = await Client.post(`/runs/${id}`, newRun)
+    const run = await Client.post(`/api/runs/${id}`, newRun)
     setShowForm(false)
     setDistance('')
     setTime('')
