@@ -13,7 +13,7 @@ Client.interceptors.request.use((config) => {
     (error) => Promise.reject(error)
 )
 
-const api = Axios.create({ baseURL: process.env.REACT_APP_API_KEY })
+const api = Axios.create({ baseURL: 'https://maps.googleapis.com/maps/' })
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem('token')
     if (token) {
