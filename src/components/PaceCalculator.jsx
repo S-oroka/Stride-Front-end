@@ -26,7 +26,7 @@ function PaceCalculator() {
           type="number"
           value={distance}
           onChange={(e) => setDistance(e.target.value)}
-          step="0.01"
+          step="0.25"
           min="0"
         />
       </div>
