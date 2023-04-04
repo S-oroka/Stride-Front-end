@@ -12,7 +12,10 @@ const Navbar = ({ user, handleLogout }) => {
       {user ? (
         <>
           <ul className="hidden md:flex items-center">
-          <NavLink onClick={() => setNav(false)} to='/pace' className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150">
+            <NavLink onClick={() => setNav(false)} to='/' className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150">
+              Your Runs
+            </NavLink>
+            <NavLink onClick={() => setNav(false)} to='/pace' className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150">
               Pace Calculator
             </NavLink>
             <li
@@ -32,6 +35,7 @@ const Navbar = ({ user, handleLogout }) => {
 
           {nav && (
             <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-white to-white text-black-500">
+              <NavLink onClick={() => setNav(false)} to='/' className="px4 cursor-pointer capitalize py-6 text-4xl">Your Runs</NavLink>
               <NavLink onClick={() => setNav(false)} to='/pace' className="px4 cursor-pointer capitalize py-6 text-4xl">Pace Calculator</NavLink>
               <li
                 className="px4 cursor-pointer capitalize py-6 text-4xl"
@@ -49,6 +53,9 @@ const Navbar = ({ user, handleLogout }) => {
       ) : (
         <>
           <ul className="hidden md:flex items-center">
+            <NavLink onClick={() => setNav(false)} to='/' className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150">
+              Home
+            </NavLink>
             <NavLink onClick={() => setNav(false)} to='/pace' className="px-4 cursor-pointer capitalize font-medium text-black hover:scale-105 duration-150">
               Pace Calculator
             </NavLink>
@@ -63,6 +70,7 @@ const Navbar = ({ user, handleLogout }) => {
 
           {nav && (
             <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-white to-white text-black-500">
+              <NavLink onClick={() => setNav(false)} to='/' className="px4 cursor-pointer capitalize py-6 text-4xl">Home</NavLink>
               <NavLink onClick={() => setNav(false)} to='/pace' className="px4 cursor-pointer capitalize py-6 text-4xl">Pace Calculator</NavLink>
               <NavLink onClick={() => setNav(false)} to='/login' className="px4 cursor-pointer capitalize py-6 text-4xl">Sign In</NavLink>
             </ul>
