@@ -18,7 +18,7 @@ const RunDetails = () => {
     const [showEditForm, setShowEditForm] = useState(false);
     const [showLocationForm, setShowLocationForm] = useState(false);
 
-    const apiKey = process.env.REACT_APP_API_KEY
+    const API_KEY = process.env.REACT_APP_API_KEY
 
     const getRun = async () => {
         const cachedRun = localStorage.getItem(`run-${id}`);
@@ -34,7 +34,7 @@ const RunDetails = () => {
 
 
     const handleAddLocation = async () => {
-        const response = await api.get(`/api/geocode/json?address=${place}&key=${apiKey}`);
+        const response = await api.get(`/api/geocode/json?address=${place}&key=${API_KEY}`);
         const { lat, lng } = response.data.results[0].geometry.location;
         setLocation({ lat, lng });
         const formattedAddress = response.data.results[0].formatted_address;
