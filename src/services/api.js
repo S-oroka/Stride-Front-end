@@ -7,7 +7,6 @@ Client.interceptors.request.use((config) => {
     const token = localStorage.getItem('token')
     if (token) {
         config.headers['authorization'] = `Bearer ${token}`
-
     }
     return config
 },
@@ -15,11 +14,10 @@ Client.interceptors.request.use((config) => {
 )
 
 const api = Axios.create({ baseURL: process.env.REACT_APP_API_KEY })
-Client.interceptors.request.use((config) => {
+api.interceptors.request.use((config) => {
     const token = localStorage.getItem('token')
     if (token) {
         config.headers['authorization'] = `Bearer ${token}`
-
     }
     return config
 },
